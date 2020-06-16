@@ -1,7 +1,7 @@
     <footer>
         
     </footer>
-    <script src="<?= URL ?>assets/script.js"></script>
+    <script src="<?= URL ?>public/assets/script.js"></script>
     <?php
         if(!empty($scripts))
         {

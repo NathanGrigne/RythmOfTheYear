@@ -1,6 +1,6 @@
 <?php
 $title = 'Home';
-$scripts = ['assets/index.js'];
-$styles = ['assets/index.css'];
+$scripts = ['public/assets/index.js'];
+$styles = ['public/assets/index.css'];
 
 include '../views/pages/home.php';

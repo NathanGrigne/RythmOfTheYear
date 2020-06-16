@@ -1,11 +1,57 @@
-
 .home
 {
+    position: relative;
     height: 100vh;
     width: 100vw;
-    background: red;
+    background: #EBC5C5;
 }
-.year
-{
 
+/*
+TIMELINE
+ */
+
+.timeLine
+{
+    position: absolute;
+    display: flex;
+    align-items:center;
+    right: 20px;
+    top: 10%;
+    width: 33px;
+    height: 80%;
+}
+
+.line
+{
+    position: relative;
+    border-bottom: 600px solid #F5DEDE;
+    border-left: 11px solid transparent;
+    border-right: 11px solid transparent;
+    height: 0;
+    width: 30%;
+}
+
+.timeLine-cursor
+{
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    left: calc(50% - 20px);
+    border-radius: 50%;
+    background: #CA9797;
+    cursor: pointer;
+    display: block;
+    z-index: 100001;
+}
+/*
+YEAR ACTION
+ */
+.year-action
+{
+    position: absolute;
+    top: 11%;
+    left: 8%;
+    font-size: 8rem;
+    font-family: "Ribes";
+    color: #000;
 }

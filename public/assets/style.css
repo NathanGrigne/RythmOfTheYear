@@ -1,2 +1,5 @@
-body{
+@font-face {
+    font-family: Ribes;
+    src: url("../fonts/Ribes-Black.otf") format("opentype")
 }
+
