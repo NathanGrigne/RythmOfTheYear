@@ -8,6 +8,15 @@
         <title><?= !empty($title) ? $title : 'Title is empty' ?></title>
         <link rel="stylesheet" href="<?= URL ?>assets/reset.css">
         <link rel="stylesheet" href="<?= URL ?>assets/style.css">
+        <?php
+        if(!empty($styles))
+        {
+            foreach ($styles as $style)
+            {
+                echo '<link rel="stylesheet" href="'.URL . $style .'"></title>';
+            }
+        }
+        ?>
     </head>
     <body>
         <header>
