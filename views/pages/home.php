@@ -7,6 +7,13 @@
             <div class="timeLine-cursor js-timeLine-cursor"></div>
         </div>
     </div>
+    <div class="vinyle">
+        <div class="poster">
+            <span class="date-vinyle js-date-vinyle">1980</span>
+            <!--<img src="images/vinile.svg" class="vinile-poster">-->
+            <img src="images/albums/diams.jpg" alt="" class="poster-affiche js-poster-affiche">
+        </div>
+    </div>
 </main>
 
 <?php include '../views/partials/footer.php' ?>
