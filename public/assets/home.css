@@ -25,10 +25,10 @@ TIMELINE
 {
     position: relative;
     border-bottom: 600px solid #F5DEDE;
-    border-left: 11px solid transparent;
-    border-right: 11px solid transparent;
+    border-left: 10px solid transparent;
+    border-right: 10px solid transparent;
     height: 0;
-    width: 30%;
+    width: 10%;
 }
 
 .timeLine-cursor
@@ -54,4 +54,67 @@ YEAR ACTION
     font-size: 8rem;
     font-family: "Ribes";
     color: #000;
+    opacity: 0;
+    transition: opacity 2s;
+
+}
+
+
+/*
+    Vinyle
+ */
+
+.vinyle
+{
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.poster
+{
+    display: flex;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    opacity: 1;
+    transition: opacity 2s;
+}
+
+.show
+{
+    opacity: 1!important;
+}
+.poster-affiche
+{
+    position: absolute;
+    border-radius: 50%;
+    height: 180px;
+    opacity: 0;
+    transition: opacity 2s;
+
+}
+
+.vinile-poster
+{
+    position: absolute;
+}
+
+.date-vinyle
+{
+    position: absolute;
+    color: #EBC5C5;
+    font-size: 11rem;
+    z-index: 10000;
+    opacity: 0;
+    transition: opacity 2s;
+    user-select: none; /* Propriété standard */
+
 }
