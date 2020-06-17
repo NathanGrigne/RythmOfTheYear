@@ -1,15 +1,7 @@
     <footer>
         
     </footer>
-    <script src="<?= URL ?>public/assets/script.js"></script>
-    <?php
-        if(!empty($scripts))
-        {
-            foreach ($scripts as $script)
-            {
-                echo '<script src="'.URL . $script .'"></script>';
-            }
-        }
-    ?>
+    <script src="<?= URL ?>assets/script.js"></script>
+    <script src="<?= URL ?>assets/<?= $controller ?>.js"></script>
 </body>
 </html>
