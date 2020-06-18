@@ -623,7 +623,7 @@ const app = new Application({
     height: window.innerHeight,
     antialias: true,
     transparent: true,
-    resolution: 1
+    resolution: window.devicePixelRatio || 1
 })
 
 document.querySelector(".vinyle").appendChild(app.view);
@@ -712,7 +712,7 @@ function setup() {
             x: ((app.screen.width / 2 - Math.abs(app.screen.width / 2 - e.clientX)) / app.screen.width) * 2,
             y: ((app.screen.height / 2 - Math.abs(app.screen.height / 2 - e.clientY)) / app.screen.height) * 2
         }
-        if(update){updateCursor(e)}
+        if(update){updateCursor(e.clientY)}
         cursor.x = e.clientX
         cursor.y = e.clientY
         c.yOffsetIncrement = map(distanceToCenter.x * distanceToCenter.y, 0, 1, 0.01, 0.05)
@@ -750,7 +750,7 @@ function setup() {
 
 
     const filter = graphics => {
-        graphics.filters = [new PIXI.filters.AdjustmentFilter({ alpha: 0.7 })]
+        graphics.filters = [new PIXI.filters.AdjustmentFilter({ alpha: 1})]
     }
     goToMainTl.play()
 
@@ -812,7 +812,7 @@ setTimeout(()=>
         date_element.classList.add("show")
         date_vinyle.classList.remove("show")
 
-},2000)
+},1000)
 
 
 window.addEventListener(
@@ -831,7 +831,7 @@ window.addEventListener(
                 date_vinyle.classList.remove("show")
             }
 
-        },2000)
+        },1000)
         update = false
         document.querySelector(".poster").classList.remove("show")
         int2 = setInterval(()=>{
@@ -842,11 +842,22 @@ window.addEventListener(
     }
 )
 
-updateCursor =  (move) =>
+updateCursor =  (move,mode = 1) =>
 {
-    const pxChange = move.clientY - cursor.y
-    let nextVal = (((pxChange*4)/1450)*600)
+    //console.log(move)
+    let pxChange;
+    let nextVal;
+    if(mode ==1)
+    {
+        pxChange = move - cursor.y
+        nextVal = (((pxChange*4)/1450)*600)
 
+    }else if(mode == 2)
+    {
+        pxChange = move
+        nextVal = move
+
+    }
     if((value + nextVal) < 0)
     {
         nextVal = 0
@@ -863,6 +874,50 @@ updateCursor =  (move) =>
     const pourcentage = (value*100)/1450
     const newYear = Math.round(startYear + pourcentage/(100/years))
     timeLine_cursor.style.transform = "translateY(" + value + "%)"
-    date_element.innerText = newYear
-    date_vinyle.innerText = newYear
+    date_element.querySelector('span').innerText = newYear
+    date_vinyle.querySelector('span').innerText = newYear
+    const yearFromDb = yearsDB[Math.round(pourcentage/(100/years))]
+    date_vinyle.querySelector('span').className = ''
+    date_element.querySelector('span').className = ''
+
+    document.querySelector('.home').style.backgroundColor =  yearFromDb['color_hex_primaire']
+   // date_element.querySelector('span').style.color = yearFromDb['color_hex_primaire_bis']
+    date_vinyle.querySelector('span').style.color = yearFromDb['color_hex_primaire_bis']
+    timeLine_cursor.style.backgroundColor = yearFromDb['color_hex_primaire_bis']
+    date_vinyle.querySelector('span').classList.add(yearFromDb['font'],yearFromDb['color_primaire'])
+    date_element.querySelector('span').classList.add(yearFromDb['font'])
 }
+let count = 0
+
+window.addEventListener('wheel',(_e)=>
+{
+    if(_e.deltaY>0)
+    {
+        console.log("descend")
+        count += 1
+    }
+    else
+    {
+        console.log("monte")
+        count -= 1
+    }
+if(count> 10)
+{
+    let scrollTo = (1450/37)
+    updateCursor(scrollTo,2)
+    count = 0
+}
+else if (count < -5)
+{
+    let scrollTo = (1450/37)
+    updateCursor(-scrollTo,2)
+    count = 0
+
+}
+
+
+})
+
+
+updateCursor(0)
+

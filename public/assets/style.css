@@ -3,3 +3,25 @@
     src: url("../fonts/Ribes-Black.otf") format("opentype")
 }
 
+@font-face {
+    font-family: Hero;
+    src: url("../fonts/Hero-Bold.otf") format("opentype")
+}
+
+@font-face {
+    font-family: Constantia;
+    src: url("../fonts/constantia.ttf") format("truetype")
+}
+
+
+@font-face {
+    font-family: Cintra;
+    src: url("../fonts/cintra.ttf") format("truetype")
+}
+
+
+@font-face {
+    font-family: drive;
+    src: url("../fonts/drive.otf") format("opentype")
+}
+

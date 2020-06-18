@@ -3,9 +3,15 @@
     position: relative;
     height: 100vh;
     width: 100vw;
-    background: #EBC5C5;
+    transition: all 1.5s ease-in;
+    will-change: auto;
+    overflow: hidden;
 }
+body
+{
+    overflow: hidden;
 
+}
 /*
 TIMELINE
  */
@@ -24,7 +30,7 @@ TIMELINE
 .line
 {
     position: relative;
-    border-bottom: 600px solid #F5DEDE;
+    border-bottom: 600px solid #FFFFFF60;
     border-left: 10px solid transparent;
     border-right: 10px solid transparent;
     height: 0;
@@ -38,10 +44,13 @@ TIMELINE
     height: 40px;
     left: calc(50% - 20px);
     border-radius: 50%;
-    background: #CA9797;
+    /* background: radial-gradient( circle at center, #9198e599 100% ,  #CA979700 100%);*/
     cursor: pointer;
     display: block;
     z-index: 100001;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
+    transition: background 0.2s ease-in, transform;
+
 }
 /*
 YEAR ACTION
@@ -56,6 +65,8 @@ YEAR ACTION
     color: #000;
     opacity: 0;
     transition: opacity 2s;
+    z-index: 10000;
+    user-select: none; /* Propriété standard */
 
 }
 
@@ -99,6 +110,7 @@ YEAR ACTION
     height: 180px;
     opacity: 0;
     transition: opacity 2s;
+    user-select: none; /* Propriété standard */
 
 }
 
