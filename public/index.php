@@ -11,9 +11,9 @@ $q = !empty($_GET['q']) ? $_GET['q'] : 'home';
 $controller = '404';
 
 if($q == 'home')
-{$controller = 'home';} 
-// else if ($q == 'about')
-// {$controller = 'about';} 
+{$controller = 'home';}
+else if ($q == 'decay')
+{$controller = 'decay';}
 
  
 //include controller

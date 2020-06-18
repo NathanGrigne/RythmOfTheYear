@@ -1,6 +1,8 @@
     <footer>
         
     </footer>
+    <script src="<?= URL ?>assets/script.js"></script>
+    <script src="<?= URL ?>assets/<?= $controller ?>.js"></script>
     <script src="<?= URL ?>public/assets/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.2.4/PixiPlugin.min.js"></script>
