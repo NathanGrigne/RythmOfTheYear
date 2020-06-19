@@ -1,9 +1,10 @@
 <?php
- require '../database/database.php';
+ require './database/database.php';
+
 /**
  * Routing
  */
-define ('URL','http://localhost:8888/');
+define ('URL','https://julienwagentrutz.com/');
 
 //Get q param
 $q = !empty($_GET['q']) ? $_GET['q'] : 'home';
@@ -17,4 +18,4 @@ else if ($q == 'decay')
 
  
 //include controller
-include '../controllers/'.$controller.'.php';
+include './controllers/'.$controller.'.php';

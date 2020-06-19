@@ -25,3 +25,18 @@
     src: url("../fonts/drive.otf") format("opentype")
 }
 
+@font-face {
+    font-family: sourceSansPro;
+    src: url("../fonts/SourceSansPro-Regular.ttf") format("truetype")
+}
+
+@font-face {
+    font-family: sourceSansProBold;
+    src: url("../fonts/SourceSansPro-Bold.ttf") format("truetype")
+}
+
+@font-face {
+    font-family: sourceSansProlight;
+    src: url("../fonts/SourceSansPro-Light.ttf") format("truetype")
+}
+

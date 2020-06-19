@@ -6,6 +6,7 @@
     transition: all 1.5s ease-in;
     will-change: auto;
     overflow: hidden;
+
 }
 body
 {
@@ -44,13 +45,12 @@ TIMELINE
     height: 40px;
     left: calc(50% - 20px);
     border-radius: 50%;
-    /* background: radial-gradient( circle at center, #9198e599 100% ,  #CA979700 100%);*/
+     background: var(--selection-background);
     cursor: pointer;
     display: block;
     z-index: 100001;
     box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.15);
-    transition: background 0.2s ease-in, transform;
-
+    transition: all 0.15s ease-in , background 1.5s ease-in;
 }
 /*
 YEAR ACTION
@@ -122,7 +122,6 @@ YEAR ACTION
 .date-vinyle
 {
     position: absolute;
-    color: #EBC5C5;
     font-size: 11rem;
     z-index: 10000;
     opacity: 0;
@@ -130,3 +129,35 @@ YEAR ACTION
     user-select: none; /* Propriété standard */
 
 }
+
+
+/*
+        Button Enter
+ */
+
+.enter
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    bottom: 10%;
+    right: 15%;
+    font-size: 44px;
+    color: #000;
+    font-family: sourceSansProBold;
+}
+:root {
+    --selection-background: #000000;
+}
+
+.enter::before
+{
+    content: '';
+    margin-right: 15px;
+    border-width: 15px 0px 15px 25px  ;
+    border-style: solid;
+    transition: all 1.5s ease-in;
+    border-color:  transparent  var(--selection-background) transparent var(--selection-background)  ;
+}
+

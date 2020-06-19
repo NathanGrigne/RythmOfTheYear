@@ -1,5 +1,29 @@
-let update = false
+const startYear = 1980;
 
+let update = false
+let continu = true
+let yearWhile = startYear
+let years = 39
+let yearsStock = []
+
+while(continu)
+{
+
+    for(let i = 0; i < TopArtistFromYearsDB.length;i++)
+    {
+        if( TopArtistFromYearsDB[i]['yearTOpA'] == yearWhile)
+        {
+            console.log(yearWhile)
+            yearsStock[yearWhile] = TopArtistFromYearsDB[i]
+            yearWhile++
+        }
+        if(yearWhile == years + startYear)
+        {
+            continu = false
+        }
+    }
+
+}
 /*
  * A speed-improved perlin and simplex noise algorithms for 2D.
  *
@@ -623,11 +647,11 @@ const app = new Application({
     height: window.innerHeight,
     antialias: true,
     transparent: true,
-    resolution: window.devicePixelRatio || 1
+    resolution:  1
 })
 
 document.querySelector(".vinyle").appendChild(app.view);
-loader.add("./images/vinyle.png").load(setup)
+loader.add("./public/images/vinyle.png").load(setup)
 
 const map = (n, start1, stop1, start2, stop2) => ((n - start1) / (stop1 - start1)) * (stop2 - start2) + start2
 const constrain = (n, low, high) => Math.max(Math.min(n, high), low)
@@ -647,7 +671,7 @@ const c = {
 }
 
 function setup() {
-    bg = new Sprite(resources["./images/vinyle.png"].texture)
+    bg = new Sprite(resources["./public/images/vinyle.png"].texture)
     bg.scale.set(1, 1)
     bg.anchor.set(0.5, 0.5)
     bg.x = window.innerWidth / 2
@@ -763,8 +787,7 @@ const date_element = document.querySelector('.js-year')
 const date_vinyle = document.querySelector('.js-date-vinyle')
 const poster_vinyle = document.querySelector('.js-poster-affiche')
 let value = 0
-const  years = 37;
-const startYear = 1980;
+
 
 
 let cursor =
@@ -879,13 +902,18 @@ updateCursor =  (move,mode = 1) =>
     const yearFromDb = yearsDB[Math.round(pourcentage/(100/years))]
     date_vinyle.querySelector('span').className = ''
     date_element.querySelector('span').className = ''
+    document.documentElement.style.setProperty("--selection-background", yearFromDb['color_hex_primaire_bis']);
 
     document.querySelector('.home').style.backgroundColor =  yearFromDb['color_hex_primaire']
    // date_element.querySelector('span').style.color = yearFromDb['color_hex_primaire_bis']
     date_vinyle.querySelector('span').style.color = yearFromDb['color_hex_primaire_bis']
-    timeLine_cursor.style.backgroundColor = yearFromDb['color_hex_primaire_bis']
     date_vinyle.querySelector('span').classList.add(yearFromDb['font'],yearFromDb['color_primaire'])
     date_element.querySelector('span').classList.add(yearFromDb['font'])
+    document.querySelector(".js-poster-affiche").src ="https://julienwagentrutz.com/public/images/albums/" + newYear + "/" + yearsStock[newYear]['img_src']
+    document.querySelector('.enter').href = '../../controllers/decay.php?year=' + newYear
+
+    stopNoise()
+
 }
 let count = 0
 
@@ -893,15 +921,13 @@ window.addEventListener('wheel',(_e)=>
 {
     if(_e.deltaY>0)
     {
-        console.log("descend")
         count += 1
     }
     else
     {
-        console.log("monte")
         count -= 1
     }
-if(count> 10)
+if(count> 5)
 {
     let scrollTo = (1450/37)
     updateCursor(scrollTo,2)
@@ -917,6 +943,78 @@ else if (count < -5)
 
 
 })
+
+
+window.addEventListener("keydown", (_e)=>
+{
+    if(_e.key == "ArrowLeft")
+    {
+        updateCursor(-(1450/37),2)
+    }
+    else if(_e.key == "ArrowRight")
+    {
+        updateCursor((1450/37),2)
+    }
+    else if(_e.key == "ArrowUp")
+    {
+        updateCursor(-(1450/37),2)
+    }
+    else if(_e.key == "ArrowDown")
+    {
+        updateCursor((1450/37),2)
+    }
+
+})
+let testNoise = true
+
+stopNoise = (tpmp = false) =>
+{
+    date_vinyle.classList.add("show")
+    poster_vinyle.classList.remove("show")
+    date_element.classList.remove("show")
+
+
+    if(testNoise)
+    {
+
+        int1 = setInterval(()=>{
+            if(c.noiseStrength > 0){c.noiseStrength -=  0.01}
+            if(c.noiseStrength < 0){c.noiseStrength = 0}
+            if(c.noiseStrength == 0)
+            {
+                clearInterval(int1)
+            }
+        },200)
+
+        testNoise = false
+
+        clearInterval(int2)
+
+
+        setTimeout(()=>{
+            poster_vinyle.classList.add("show")
+            date_element.classList.add("show")
+            date_vinyle.classList.remove("show")
+            int2 = setInterval(() => {
+                if (c.noiseStrength < 0.3) {
+                    c.noiseStrength += 0.01
+                }
+                if (c.noiseStrength > 0.3) {
+                    c.noiseStrength = 0.3
+                }
+                if(c.noiseStrength == 0.3)
+                {
+                    clearInterval(int2)
+                }
+
+            }, 200)
+            testNoise = true
+            clearInterval(int1)
+
+        },2000)
+    }
+}
+
 
 
 updateCursor(0)
